@@ -1,8 +1,9 @@
+"""
 import altair as alt
 import numpy as np
 import pandas as pd
 import streamlit as st
-
+"""
 """
 # Welcome to Streamlit!
 # Welcome to Streamlit!
@@ -13,7 +14,7 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
-
+"""
 num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
 
@@ -39,3 +40,21 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         color=alt.Color("idx", legend=None, scale=alt.Scale()),
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
+
+"""
+import streamlit as st
+import time
+
+@st.cache(suppress_st_warning=True)
+def expensive_computation(a, b):
+    st.write("Cache miss: expensive_computation(", a, ",", b, ") ran")
+    time.sleep(2)  # This makes the function take 2s to run
+    return a * b
+
+a = 2
+b = 210  # 👈 Changed this
+res = expensive_computation(a, b)
+
+st.write("Result:", res)
+
+
